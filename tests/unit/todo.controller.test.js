@@ -23,14 +23,14 @@ describe('TodoController.createTodo', () => {
         TodoContoller.createTodo(req, res, next)
         expect(TodoModel.create).toBeCalledWith(newTodo)
     })
-    it('should return 201 response code', () => {
-        TodoContoller.createTodo(req, res, next)
+    it('should return 201 response code', async () => {
+        await TodoContoller.createTodo(req, res, next)
         expect(res.statusCode).toBe(201)
         expect(res._isEndCalled()).toBeTruthy()
     })
-    it('should return json body in response', () => {
-        TodoModel.create.mockReturnValue(newTodo)
-        TodoContoller.createTodo(req, res, next)
+    it('should return json body in response', async () => {
+        await TodoModel.create.mockReturnValue(newTodo)
+        await TodoContoller.createTodo(req, res, next)
         expect(res._getJSONData()).toStrictEqual(newTodo)
     })
 })
